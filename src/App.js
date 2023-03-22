@@ -1,4 +1,5 @@
 import BookCreate from "./components/BookCreate";
+import BookList from "./components/BookList";
 import { useState } from "react";
 
 function App() {
@@ -6,12 +7,18 @@ function App() {
     const [books, setBooks] = useState([]);
 
     const createBook = (title) => {
-        console.log('Creating a book with title ' +title);
+        const renderedBooks = [...books, {
+            id: Math.round(Math.random() * 9999),
+            title: title,
+        }];
+
+        setBooks(renderedBooks);
     };
 
     return (
-        <div>
-            <BookCreate onCreate= {createBook} />
+        <div className="app">
+            <BookCreate onCreate={createBook} />
+            <BookList books={ books} />
         </div>
     );
 }
