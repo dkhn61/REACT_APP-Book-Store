@@ -9,6 +9,7 @@ function BookCreate({ onCreate }) {
     const handleSubmit = (event) => {
         event.preventDefault();
         onCreate(text);
+        setText('');
     };
     
     return (
