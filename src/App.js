@@ -16,16 +16,25 @@ function App() {
     };
 
     const deleteBookById = (id) => {
-    const updatedBooks = books.filter((book) =>{
-        return book.id !== id ;
-    })
+        const updatedBooks = books.filter((book) => {
+            return book.id !== id;
+        });
+        setBooks(updatedBooks);
+    };
+
+    const editBookById = (id, newTitle) => {
+        const updatedBooks = books.map((book) => {
+            if (book.id === id) {
+            return {...book, title : newTitle};
+        }
+        });
         setBooks(updatedBooks);
     };
 
     return (
         <div className="app">
             <BookCreate onCreate={createBook} />
-            <BookList books={books} onDelete={ deleteBookById} />
+            <BookList books={books} onDelete={ deleteBookById} onEdit ={editBookById} />
         </div>
     );
 }
